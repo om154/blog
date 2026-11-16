@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { cleanPath } from '../utils/path';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title, description = SITE_DESCRIPTION } = Astro.props;
+const pageTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
+const canonicalURL = new URL(cleanPath(Astro.url.pathname), Astro.site);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<script is:inline>
+	try {
+		document.querySelector('meta[name="color-scheme"]').content =
+			localStorage.getItem('color-scheme') ?? 'light dark';
+	} catch {}
+</script>
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="author" content={SITE_TITLE} />
+<meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={canonicalURL} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link
+	rel="alternate"
+	type="application/rss+xml"
+	title={SITE_TITLE}
+	href={new URL('rss.xml', Astro.site)}
+/>
+
+<meta property="og:site_name" content={SITE_TITLE} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title ?? SITE_TITLE} />
+<meta property="og:description" content={description} />
+<meta name="twitter:card" content="summary" />

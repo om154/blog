@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE } from '../consts';
+import Base from '../layouts/Base.astro';
+
+const notes = (await getCollection('notes'))
+	.flatMap((note) => (note.data.pubDate ? [{ ...note, pubDate: note.data.pubDate }] : []))
+	.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
+---
+
+<Base>
+	<h1 class="visually-hidden">{SITE_TITLE}</h1>
+	<p>I'm Oliver. Replace this line with a short introduction. <a href="/about">About me</a>.</p>
+
+	<h2>Writing</h2>
+	<ul class="note-list" role="list">
+		{
+			notes.map((note) => (
+				<li>
+					<a href={`/${note.id}`}>{note.data.title}</a>
+					<FormattedDate date={note.pubDate} />
+				</li>
+			))
+		}
+	</ul>
+</Base>
