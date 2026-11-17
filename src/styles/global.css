@@ -133,16 +133,10 @@ body {
 }
 
 .site-nav a {
-	color: var(--muted);
 	text-decoration: none;
 }
 
-.site-nav a:hover {
-	color: var(--text);
-}
-
 .site-nav a[aria-current='page'] {
-	color: var(--text);
 	text-decoration: underline;
 	text-underline-offset: 0.3em;
 }
@@ -273,13 +267,8 @@ p {
 
 a {
 	color: inherit;
-	text-decoration-color: color-mix(in oklch, currentColor 35%, transparent);
 	text-decoration-thickness: 0.06em;
 	text-underline-offset: 0.18em;
-}
-
-a:hover {
-	text-decoration-color: currentColor;
 }
 
 ul,
@@ -382,15 +371,6 @@ th {
 	gap: 1rem;
 	margin: 0;
 	padding-block: 0.3em;
-}
-
-.note-list a {
-	text-decoration: none;
-}
-
-.note-list a:hover {
-	text-decoration: underline;
-	text-decoration-color: currentColor;
 }
 
 .note-year,
