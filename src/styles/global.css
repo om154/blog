@@ -1,29 +1,26 @@
 :root {
 	color-scheme: light dark;
 
-	--font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	--font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
 	--measure: 36em;
 
-	--bg-light: oklch(98.5% 0.002 250);
-	--bg-dark: oklch(17% 0.006 250);
-	--text-light: oklch(22% 0.01 250);
-	--text-dark: oklch(88% 0.006 250);
-	--muted-light: oklch(48% 0.012 250);
-	--muted-dark: oklch(68% 0.01 250);
-	--line-light: oklch(90% 0.004 250);
-	--line-dark: oklch(28% 0.006 250);
-	--surface-light: oklch(95.5% 0.004 250);
-	--surface-dark: oklch(22% 0.006 250);
-	--accent-light: oklch(45% 0.15 255);
-	--accent-dark: oklch(78% 0.11 250);
+	--bg-light: oklch(98.2% 0.005 85);
+	--bg-dark: oklch(21% 0.003 70);
+	--text-light: oklch(24% 0.008 70);
+	--text-dark: oklch(92.5% 0.008 85);
+	--muted-light: oklch(50% 0.01 70);
+	--muted-dark: oklch(72% 0.01 75);
+	--line-light: oklch(90% 0.007 80);
+	--line-dark: oklch(30% 0.005 70);
+	--surface-light: oklch(95% 0.007 85);
+	--surface-dark: oklch(25.5% 0.004 70);
 
 	--bg: var(--bg-light);
 	--text: var(--text-light);
 	--muted: var(--muted-light);
 	--line: var(--line-light);
 	--surface: var(--surface-light);
-	--accent: var(--accent-light);
 
 	@media (prefers-color-scheme: dark) {
 		--bg: var(--bg-dark);
@@ -31,7 +28,6 @@
 		--muted: var(--muted-dark);
 		--line: var(--line-dark);
 		--surface: var(--surface-dark);
-		--accent: var(--accent-dark);
 	}
 
 	@supports (color: light-dark(white, black)) {
@@ -40,7 +36,6 @@
 		--muted: light-dark(var(--muted-light), var(--muted-dark));
 		--line: light-dark(var(--line-light), var(--line-dark));
 		--surface: light-dark(var(--surface-light), var(--surface-dark));
-		--accent: light-dark(var(--accent-light), var(--accent-dark));
 	}
 
 	&:has(> head > meta[name='color-scheme'][content='dark']) {
@@ -73,14 +68,14 @@ body {
 	padding: clamp(1.5rem, 4vw, 3.5rem) 1.25rem 8rem;
 	background: var(--bg);
 	color: var(--text);
-	font-family: var(--font-sans);
+	font-family: var(--font-serif);
 	font-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-	line-height: 1.55;
+	line-height: 1.6;
 	overflow-wrap: break-word;
 }
 
 :focus-visible {
-	outline: 2px solid var(--accent);
+	outline: 2px solid var(--text);
 	outline-offset: 2px;
 	border-radius: 2px;
 }
@@ -107,10 +102,13 @@ body {
 }
 
 .site-name {
-	margin-inline-end: auto;
 	color: inherit;
 	font-weight: 600;
 	text-decoration: none;
+}
+
+.site-nav {
+	margin-inline-start: auto;
 }
 
 .site-nav ul {
@@ -226,15 +224,16 @@ h4 {
 }
 
 h1 {
-	margin-block: 0 0.4em;
-	font-size: 1.6em;
+	margin-block: 0 0.5em;
+	font-size: 2.25em;
+	line-height: 1.15;
 	letter-spacing: -0.02em;
 }
 
 h2 {
-	margin-block: 2.2em 0.5em;
-	font-size: 1.15em;
-	letter-spacing: -0.01em;
+	margin-block: 2em 0.6em;
+	font-size: 1.35em;
+	letter-spacing: -0.02em;
 }
 
 h3,
@@ -257,13 +256,14 @@ p {
 }
 
 a {
-	color: var(--accent);
+	color: inherit;
+	text-decoration-color: color-mix(in oklch, currentColor 35%, transparent);
 	text-decoration-thickness: 0.06em;
-	text-underline-offset: 0.2em;
+	text-underline-offset: 0.18em;
 }
 
 a:hover {
-	text-decoration-thickness: 0.12em;
+	text-decoration-color: currentColor;
 }
 
 ul,
@@ -360,29 +360,28 @@ th {
 }
 
 .note-list li {
-	display: flex;
+	display: grid;
+	grid-template-columns: 3.25em 1fr auto;
 	align-items: baseline;
-	justify-content: space-between;
-	gap: 1.5rem;
+	gap: 1rem;
 	margin: 0;
-	padding-block: 0.45em;
-	border-block-end: 1px solid var(--line);
+	padding-block: 0.3em;
 }
 
 .note-list a {
-	color: var(--text);
 	text-decoration: none;
 }
 
 .note-list a:hover {
 	text-decoration: underline;
+	text-decoration-color: currentColor;
 }
 
+.note-year,
 .note-list time {
-	flex: none;
 	color: var(--muted);
-	font-size: 0.9em;
-	font-variant-numeric: tabular-nums;
+	font-size: 0.875em;
+	font-variant-numeric: lining-nums tabular-nums;
 }
 
 /* Footer */

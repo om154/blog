@@ -1,14 +1,15 @@
 ---
 interface Props {
 	date: Date;
+	showYear?: boolean;
 }
 
-const { date } = Astro.props;
+const { date, showYear = true } = Astro.props;
 ---
 
 <time datetime={date.toISOString()}>
 	{date.toLocaleDateString('en-us', {
-		year: 'numeric',
+		year: showYear ? 'numeric' : undefined,
 		month: 'short',
 		day: 'numeric',
 		timeZone: 'UTC',

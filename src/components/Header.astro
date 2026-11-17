@@ -7,7 +7,7 @@ const currentPath = cleanPath(Astro.url.pathname);
 ---
 
 <header class="site-header">
-	<a class="site-name" href="/">{SITE_TITLE}</a>
+	{currentPath !== '/' && <a class="site-name" href="/">{SITE_TITLE}</a>}
 	<nav class="site-nav" aria-label="Primary">
 		<ul role="list">
 			{
