@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
+import CopyCode from '../components/CopyCode.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Base from '../layouts/Base.astro';
 
@@ -37,4 +38,5 @@ const { Content } = await render(note);
 		</header>
 		<Content />
 	</article>
+	<CopyCode />
 </Base>

@@ -1,0 +1,101 @@
+---
+import Check from '@lucide/astro/icons/check';
+import Copy from '@lucide/astro/icons/copy';
+---
+
+<template id="copy-code-template">
+	<span class="copy">
+		<button type="button" class="copy-button" command="--copy" aria-label="Copy code">
+			<Copy class="icon-copy" size={16} aria-hidden="true" />
+			<Check class="icon-check" size={16} aria-hidden="true" />
+		</button>
+		<span class="copy-tip" role="status"></span>
+	</span>
+</template>
+
+<script>
+	const template = document.querySelector<HTMLTemplateElement>('#copy-code-template');
+	const timers = new WeakMap<HTMLButtonElement, number>();
+	let lastMessage = '';
+
+	const labelFor = (pre: HTMLElement) => {
+		let element = pre.previousElementSibling;
+		while (element && !/^H[2-6]$/.test(element.tagName)) element = element.previousElementSibling;
+		return element ? `Copy code: ${element.textContent?.trim()}` : 'Copy code';
+	};
+
+	const report = (button: HTMLButtonElement, ok: boolean) => {
+		const tip = button.nextElementSibling;
+		if (!tip) return;
+
+		clearTimeout(timers.get(button));
+		button.removeAttribute('data-copied');
+		button.removeAttribute('data-failed');
+		tip.textContent = '';
+
+		let message = ok ? 'Copied' : 'Copy failed';
+		if (message === lastMessage) message += '\u00A0';
+		lastMessage = message;
+
+		void button.offsetWidth;
+		button.setAttribute(ok ? 'data-copied' : 'data-failed', '');
+		requestAnimationFrame(() => (tip.textContent = message));
+
+		timers.set(
+			button,
+			window.setTimeout(() => {
+				button.removeAttribute('data-copied');
+				button.removeAttribute('data-failed');
+				tip.textContent = '';
+			}, 2000),
+		);
+	};
+
+	const copy = async (button: HTMLButtonElement, target: HTMLElement) => {
+		const text = target.innerText.trim();
+		if (!text) return;
+		try {
+			await navigator.clipboard.writeText(text);
+			report(button, true);
+		} catch {
+			report(button, false);
+		}
+	};
+
+	if (template) {
+		document.querySelectorAll<HTMLPreElement>('article pre').forEach((pre, index) => {
+			const code = pre.querySelector('code') ?? pre;
+			code.id ||= `code-block-${index + 1}`;
+			const label = labelFor(pre);
+
+			const { backgroundColor, color } = getComputedStyle(pre);
+			const wrapper = document.createElement('div');
+			wrapper.className = 'copyable';
+			wrapper.style.setProperty('--code-bg', backgroundColor);
+			wrapper.style.setProperty('--code-fg', color);
+			pre.replaceWith(wrapper);
+			wrapper.append(pre, template.content.cloneNode(true));
+
+			const button = wrapper.querySelector<HTMLButtonElement>('.copy-button');
+			button?.setAttribute('commandfor', code.id);
+			button?.setAttribute('aria-label', label);
+		});
+	}
+
+	if ('CommandEvent' in window) {
+		document.addEventListener(
+			'command',
+			(event) => {
+				const { command, source } = event as Event & { command: string; source: HTMLButtonElement };
+				if (command === '--copy') copy(source, event.target as HTMLElement);
+			},
+			true,
+		);
+	} else {
+		document.addEventListener('click', (event) => {
+			const button = (event.target as Element).closest<HTMLButtonElement>('button[command="--copy"]');
+			const target = button && document.getElementById(button.getAttribute('commandfor') ?? '');
+			if (button && target) copy(button, target);
+		});
+	}
+</script>
