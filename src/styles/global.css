@@ -1,7 +1,16 @@
+@font-face {
+	font-family: 'Allo';
+	src: url('/fonts/allo/AlloVariableFriendly.woff2') format('woff2');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
 :root {
 	color-scheme: light dark;
 
 	--font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+	--font-heading: 'Allo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
 	--measure: 36em;
 
@@ -217,6 +226,15 @@ body {
 h1,
 h2,
 h3,
+h4,
+.site-name {
+	font-family: var(--font-heading);
+	font-size-adjust: from-font;
+}
+
+h1,
+h2,
+h3,
 h4 {
 	font-weight: 600;
 	line-height: 1.25;
@@ -227,13 +245,11 @@ h1 {
 	margin-block: 0 0.5em;
 	font-size: 2.25em;
 	line-height: 1.15;
-	letter-spacing: -0.02em;
 }
 
 h2 {
 	margin-block: 2em 0.6em;
 	font-size: 1.35em;
-	letter-spacing: -0.02em;
 }
 
 h3,

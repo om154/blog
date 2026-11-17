@@ -23,6 +23,13 @@ const canonicalURL = new URL(cleanPath(Astro.url.pathname), Astro.site);
 	} catch {}
 </script>
 <title>{pageTitle}</title>
+<link
+	rel="preload"
+	href="/fonts/allo/AlloVariableFriendly.woff2"
+	as="font"
+	type="font/woff2"
+	crossorigin
+/>
 <meta name="description" content={description} />
 <meta name="author" content={SITE_TITLE} />
 <meta name="generator" content={Astro.generator} />
