@@ -111,12 +111,15 @@ body {
 }
 
 .site-name {
+	align-self: baseline;
 	color: inherit;
+	font-size: 1.25em;
 	font-weight: 600;
 	text-decoration: none;
 }
 
 .site-nav {
+	align-self: baseline;
 	margin-inline-start: auto;
 }
 
