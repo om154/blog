@@ -1,7 +1,7 @@
 ---
 title: My Essentials for Mac
 description: The settings, apps, and hardware I set up on every Mac.
-pubDate: 2026-11-16
+pubDate: 2026-04-17
 ---
 
 ## Raycast
@@ -19,6 +19,7 @@ pubDate: 2026-11-16
 - Team time – e.g. 🇺🇸 SF / 🇺🇸 NY / 🇮🇹 Italy / 🇺🇾 Uruguay
 - Dictation
 - AI chats, Quick AI
+- Extensions – there's a marketplace of extensions for almost every single tool you can imagine
 
 Taking the time to setup and learn to use Raycast will save you significant time and will honestly bring you joy throughout the day. The calculator especially is fantastic for making quick calculations when something comes to mind. For example: $100 USD to AUD, or 99°F to °C, "Days until Christmas", "Days until August 29".
 
@@ -48,7 +49,7 @@ Taking the time to setup and learn to use Raycast will save you significant time
 
 - [SteerMouse](https://plentycom.jp/en/steermouse/) for customization if you use a mouse
 - [MonitorControl](https://github.com/MonitorControl/MonitorControl#readme) or [BetterDisplay Pro](https://betterdisplay.pro/) if you use an external monitor. See [this thread on r/mac](https://www.reddit.com/r/mac/comments/16hnmgw/external_monitor_control_monitorcontrol_lunar_or/) to compare them.
--  [Unclack](https://unclack.app/) if you use a mechanical keyboard
+- [Unclack](https://unclack.app/) if you use a mechanical keyboard
 
 ## Other software
 
