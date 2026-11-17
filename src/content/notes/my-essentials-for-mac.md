@@ -12,13 +12,13 @@ pubDate: 2026-04-17
 - Clipboard history
 - Color picker
 - Emoji picker with symbols and AI search
-- Hotkeys – global keyboard shortcuts to open any app
+- Hotkeys – global keyboard shortcuts to open any app, e.g. ⌥ + C for Chrome
 - Quicklinks – shortcuts for frequently used paths, files, and URLs
 - Snippets – text expansion
 - Window management – move and resize windows
 - Team time – e.g. 🇺🇸 SF / 🇺🇸 NY / 🇮🇹 Italy / 🇺🇾 Uruguay
 - Dictation
-- AI chats, Quick AI
+- AI chats, Quick AI – ⌥ + Space and a chat window is open
 - Extensions – there's a marketplace of extensions for almost every single tool you can imagine
 
 Taking the time to setup and learn to use Raycast will save you significant time and will honestly bring you joy throughout the day. The calculator especially is fantastic for making quick calculations when something comes to mind. For example: $100 USD to AUD, or 99°F to °C, "Days until Christmas", "Days until August 29".
